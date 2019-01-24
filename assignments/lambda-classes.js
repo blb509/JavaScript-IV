@@ -28,6 +28,17 @@ class Instructor extends Person {
     grade(student, subject){
         console.log(`${student.name} receives a perfect score on ${subject}`);
     }
+
+    graded(student){
+      let num =  Math.floor((Math.random() * 100) + 1);
+      let addOrSUb = Math.random();
+      if (addOrSUb <= .5) {
+         num = student.grade - num;
+      } else {
+          num = student.grade + num;
+      }
+      return student.grade = num;
+    }
 }
 
 class student extends Person {
@@ -36,6 +47,7 @@ class student extends Person {
         this.previousBackground = info.previousBackground;
         this.className = info.className;
         this.favSubjects = info.favSubjects;
+        this.grade = info.grade;
     }
 
     listSubjects(arr) {
@@ -51,6 +63,14 @@ class student extends Person {
 
     sprintChallenge(subject){
         console.log(`${this.name} has begun sprint challenge on ${subject}`);
+    }
+
+    graduate() {
+        if (this.grade / 100 >= 0.7) {
+            console.log("Atta boy!");
+        } else {
+            console.log("Mission Failed, we'll get em next time.")
+        }
     }
 }
 
@@ -87,7 +107,8 @@ const Fred = new Instructor({
     gender: 'male',
     previousBackground: 'was a genius baby',
     className: 'WEB17',
-    favSubjects: ['Html', 'CSS', 'JavaScript']
+    favSubjects: ['Html', 'CSS', 'JavaScript'],
+    grade: 70
   });
 
   const Key = new ProjectManangers({
@@ -114,4 +135,6 @@ const Fred = new Instructor({
   Key.grade(Stew, "Poison Making");
   Key.standUp("WEB17");
   Key.debugsCode(Stew, "Hacking");
-*/
+  Key.graded(Stew);
+  Stew.graduate();     
+  */
